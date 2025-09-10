@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Projeção Economica ReTech</title>
 </head>
 <body>
 
@@ -17,6 +17,16 @@
 
     <br><br>
 
+    <h4>De acordo com a região escolhida, há uma variação percentual nos custos operacionais 
+        e no preço do combustível. Essa diferença impacta diretamente na economia final 
+        calculada pelo sistema ReTech</h4>
+
+        <h5><b>Ribeirão Preto = Taxa de 32% de economia.</b></h5>
+        <h5><b>Indaiatuba = Taxa de 28% de economia.</b></h5>
+        <h5><b>Geral = Taxa de aproximadamente 30% de economia.</b></h5>
+
+
+    
     <span>Informe o nome da cidade para visualizar a projeção de custos:</span>
     <input type="text" id="input_cidade"> <br>
 
@@ -42,7 +52,7 @@
 <script>
 
     var mes = 0;
-
+  
     function calcular(){
         var cidade = input_cidade.value;
         var veiculos = Number(input_veiculos.value);
@@ -76,11 +86,11 @@
 
          div_mensagem.innerHTML = `
             <h3>Relatório de Impacto Econômico - <span style="color: darkgreen"> ${cidade} </span></h3>
-            <p><b>Custo atual:</b> R$ ${custoAtual.toFixed(2)}</p>
-            <p><b>Custo com o Sistema de Monitoramento ReTech:</b> R$ ${custoComReTech.toFixed(2)}</p>
-            <p><b>Economia estimada:</b> R$ ${economia.toFixed(2)} (${(reducaoPercentual*100).toFixed(0)}%)</p>
+            <p><b>Custo atual:</b> R$ ${custoAtual.toLocaleString()}</p>
+            <p><b>Custo com o Sistema de Monitoramento ReTech:</b> R$ ${custoComReTech.toLocaleString()}</p>
+            <p><b>Economia estimada:</b> R$ ${economia.toFixed(2)} (${(reducaoPercentual*100).toLocaleString()}%)</p>
             <p><b>Preço médio do combustível considerado:</b> R$ ${precoCombustivel.toFixed(2)}/litro</p>
-            <p><b>Em ${mes} mês(es) você economizou:</b> R$ ${economiaTotal.toFixed(2)}</p>
+            <p><b>Em ${mes} mês(es) você economizou:</b> R$ ${economiaTotal.toLocaleString()}</p>
             <br>
             <p> A Retech propõe à Prefeitura da cidade de ${cidade} a adoção de um sistema de monitoramento inteligente de lixeiras
             subterrâneas, capaz de <b> <span style="color: darkgreen">reduzir em aproximadamente 30% os custos operacionais da coleta de resíduos.</span> </b> <br>
