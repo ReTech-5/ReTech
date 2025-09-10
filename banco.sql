@@ -24,7 +24,6 @@ Senha CHAR(8) NOT NULL,
 DtCadastro DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-DROP TABLE Usuario;
 
 INSERT INTO Usuario (Nome, Email, Contato, Senha) VALUES
 ('Mayara Cristina Longuinho de França', 'mayara.franca@sptech.school', '(11)94002-8922', 'Diana123'),
@@ -149,15 +148,11 @@ DataMedicao DATETIME  DEFAULT CURRENT_TIMESTAMP
 DESC DadosArduino;
 
 INSERT INTO DadosArduino (Profundidade) VALUES 
-(200.00);
-
+(200.00),
+(173.50),
+(215.32);
   
 SELECT * FROM DadosArduino;
-  
-INSERT INTO DadosArduino (Profundidade) VALUES 
-(173.50);
-
-  
 
 ALTER TABLE DadosArduino ADD COLUMN Limite CHAR (3);
 ALTER TABLE DadosArduino ADD CONSTRAINT chkLimite 
