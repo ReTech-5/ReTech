@@ -14,33 +14,28 @@
              <h2 style="margin: 0;">Simulador de Economia para Coleta de Resíduos</h2>
         </div>
     </div>
+   
+    <br>
+    DADOS: 
+    <br>
+    Autonomia do caminhão é de <b>2,5km/litro</b>
+    <br>
+    Valor médio do Diesel S-10: <b>R$ 6,17/litro</b>
+    <br>
 
-    <br><br>
-
-    <h4>De acordo com a região escolhida, há uma variação percentual nos custos operacionais 
-        e no preço do combustível. Essa diferença impacta diretamente na economia final 
-        calculada pelo sistema ReTech</h4>
-
-        <h5><b>Ribeirão Preto = Taxa de 32% de economia.</b></h5>
-        <h5><b>Indaiatuba = Taxa de 28% de economia.</b></h5>
-        <h5><b>Geral = Taxa de aproximadamente 30% de economia.</b></h5>
-
-
+    <br>
     
-    <span>Informe o nome da cidade para visualizar a projeção de custos:</span>
+    <span>Nome da cidade para a projeção de custos:</span>
     <input type="text" id="input_cidade"> <br>
 
-    <span>Informe a quantidade total de veículos utilizados para a coleta de resíduos:</span>
+    <span>Quantidade total de veículos utilizados para a coleta de resíduos(diária):</span>
     <input type="text" id="input_veiculos"> <br>
 
-    <span>Informe o valor aproximado gasto com combustível em cada Frota de coleta: (R$)</span>
-    <input type="text" id="input_combustivel"> <br>
+    <span>Média de quilômetros rodados por caminhão(km/dia):</span>
+    <input type="text" id="input_km"> <br>
 
-    <span>Informe o número médio de deslocamentos feitos mensalmente pelos caminhões de coleta:</span>
+    <span>Número médio de deslocamentos feitos pela Frota (diária):</span>
     <input type="text" id="input_deslocamentos"> <br>
-
-    <span>Custo médio mensal com mão de obra (R$) - Incluir salários e encargos relacionados a motoristas e coletores: </span>
-    <input type="text" id="input_custoMensal"> <br>  <br>
 
     <button onclick="calcular()">Calcular Impacto Econômico</button>
     <button onclick="Limpar()">Limpar Simulação</button>
@@ -56,44 +51,27 @@
     function calcular(){
         var cidade = input_cidade.value;
         var veiculos = Number(input_veiculos.value);
-        var combustivel = Number(input_combustivel.value);
+        var km = Number(input_km.value); 
         var deslocamentos = Number(input_deslocamentos.value);
-        var custoMensal = Number(input_custoMensal.value);
-
-        var custoAtual = (veiculos * combustivel * deslocamentos) + custoMensal;
-
-        var reducaoCustos = (veiculos * combustivel * deslocamentos + custoMensal) * 0.7;
-        var reducaoDeslocamentos = deslocamentos * 0.5;
-
-        var precoCombustivel = 6.17;
-        var reducaoPercentual = 0.30;
-       
-        if(cidade == "Ribeirão Preto") {
-            precoCombustivel = 6.20;
-            reducaoPercentual = 0.32;
-        }
-
-        if(cidade == "Indaiatuba"){
-           precoCombustivel = 5.89;
-           reducaoPercentual = 0.28;
-        }
-
-        var custoComReTech = custoAtual * (1 - reducaoPercentual);
-        var economia = custoAtual - custoComReTech;
+        var gastoKM = km / 2.5;
+        var gastoCombustivel = gastoKM * 6.17;
+        var gastoFrota = gastoCombustivel * veiculos;
+        var gastoDeslocamentos = gastoFrota * deslocamentos;
+        var gastoTotal = gastoDeslocamentos * 30;
+        var gastoRetech = gastoTotal * 0.60;
+        var economia = gastoTotal - gastoRetech;
 
         mes ++;
         var economiaTotal = economia * mes;
 
          div_mensagem.innerHTML = `
             <h3>Relatório de Impacto Econômico - <span style="color: darkgreen"> ${cidade} </span></h3>
-            <p><b>Custo atual:</b> R$ ${custoAtual.toLocaleString()}</p>
-            <p><b>Custo com o Sistema de Monitoramento ReTech:</b> R$ ${custoComReTech.toLocaleString()}</p>
-            <p><b>Economia estimada:</b> R$ ${economia.toFixed(2)} (${(reducaoPercentual*100).toLocaleString()}%)</p>
-            <p><b>Preço médio do combustível considerado:</b> R$ ${precoCombustivel.toFixed(2)}/litro</p>
-            <p><b>Em ${mes} mês(es) você economizou:</b> R$ ${economiaTotal.toLocaleString()}</p>
+            <p><b>Custo atual:</b> ${gastoTotal.toLocaleString("pt-BR", {style: "currency", currency: "BRL"})}</p>
+            <p><b>Economia estimada com o Sistema de Monitoramento ReTech:</b> ${economia.toLocaleString("pt-BR", {style: "currency", currency: "BRL"})} (40%)
+            <p><b>Em ${mes} mês(es) você economizou:</b> ${economiaTotal.toLocaleString("pt-BR", {style: "currency", currency: "BRL"})}</p>
             <br>
             <p> A Retech propõe à Prefeitura da cidade de ${cidade} a adoção de um sistema de monitoramento inteligente de lixeiras
-            subterrâneas, capaz de <b> <span style="color: darkgreen">reduzir em aproximadamente 30% os custos operacionais da coleta de resíduos.</span> </b> <br>
+            subterrâneas, capaz de <b> <span style="color: darkgreen">reduzir  aproximadamente 50% das Frotas.</span> </b> <br>
             Com sensores em tempo real e dashboards de gestão, a solução otimiza rotas, diminui o
             consumo de combustível, preserva a infraestrutura urbana e contribui para a saúde pública
             ao evitar acúmulo de lixo e proliferação de vetores. <br> Trata-se de uma medida inovadora e eficiente,
