@@ -207,28 +207,3 @@ horaCOLETA AS 'Horário da coleta' FROM Regiao
 ORDER BY qtdPRODUZIDA DESC;
 
  
-
---  TABELA FINANCEIRO: 
-
-CREATE TABLE financeiro ( 
-idgastos INT PRIMARY KEY AUTO_INCREMENT, 
-custoEQUIPE DECIMAL (8, 2), 
-gastoCOMBUSTIVEL DECIMAL (8, 2), 
-qtdCOLETADO DECIMAL (6, 2) 
-);
-
-  
-
-INSERT INTO financeiro VALUES 
-(default, '165000.00', '26460.00', '5'), 
-(default, '132500.00', '29000.00', '7'), 
-(default, '95000.00', '22386.00', '4'); 
-
-  
-
-SELECT * FROM financeiro;
-  
-
-SELECT custoEQUIPE AS 'Gastos com Funcionários(mês)', 
-gastoCOMBUSTIVEL AS 'Gastos com óleo diesel(mês)', 
-qtdCOLETADO AS 'Média de Lixo coletado (ton) / caminhão' FROM financeiro;
