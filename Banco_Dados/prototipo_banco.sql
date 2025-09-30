@@ -1,18 +1,22 @@
 /*
-GRUPO 9
- ARTHUR RODRIGUES, 
- GABRIEL PEREIRA,
- GLEISON ALMEIDA, 
- LUCAS GABRIEL,
+GRUPO 5git 
+ CAUÃ GAMA PAIXÃO, 
+ ERICK VICTORINO,
+ FERNANDA GONÇALO, 
+ MAYARA LONGUINHO,
  PEDRO VIEIRA,
- SAMARA FARIAS
+ SAMARA FARIAS,
+ RONIJAMILLY LIMA
 */
+
+-- Comentario Gleison: O script desse banco de dados carece de um padrão de desenvolvimento
 
 CREATE DATABASE Retech;
 
 USE Retech;
 
 -- TABELA USUARIO:
+-- Comentario Gleison: A tabela usuario deve ser remodelada para se alinhar com a regra de negocio
 
 CREATE TABLE Usuario (
 IdUsuario INT PRIMARY KEY AUTO_INCREMENT,
@@ -90,8 +94,6 @@ SELECT * FROM usuario;
 
 ALTER TABLE Usuario RENAME COLUMN DtCadastro TO DtLogin;
 
-DESCRIBE Usuario;
-
 
 ALTER TABLE Usuario MODIFY COLUMN email VARCHAR(90);
 
@@ -137,6 +139,7 @@ SELECT nome,
     FROM Usuario;
 
 -- TABELA ARDUINO:  
+-- Comentario Gleison: A tabela do arduino necessita de campos essenciais
 
 CREATE TABLE DadosArduino ( 
 idLixeira INT PRIMARY KEY AUTO_INCREMENT, 
@@ -176,6 +179,7 @@ Limite AS 'Antigiu o Limite?' FROM DadosArduino;
 
 
 -- TABELA REGIAO: 
+-- Comentario Gleison: Não entendi essa tabela direito
 
 CREATE TABLE Regiao ( 
 idRegiao INT PRIMARY KEY AUTO_INCREMENT, 
@@ -205,4 +209,12 @@ tipoREGIAO AS 'Classificação da região',
 horaCOLETA AS 'Horário da coleta' FROM Regiao 
 ORDER BY qtdPRODUZIDA DESC;
 
+-- Comentario Gleison: --
+/*
+
+As tabelas existentes necessitam de uma atualização para se adequarem ao modelo de negócio. 
+Necessitamos também de algumas novas tabelas essenciais para o projeto, como uma tabela para armazenar
+as informações dos sensores.
+
+*/
  
