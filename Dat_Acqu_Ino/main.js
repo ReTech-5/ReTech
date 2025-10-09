@@ -12,8 +12,8 @@ const HABILITAR_OPERACAO_INSERIR = true;
 
 // função para comunicação serial
 const serial = async (
-    valoresSensorAnalogico,
-    //valoresSensorDigital,
+    valoresSensorHcsr04,
+
 ) => {
 
     // conexão com o banco de dados MySQL
@@ -51,22 +51,149 @@ const serial = async (
     arduino.pipe(new serialport.ReadlineParser({ delimiter: '\r\n' })).on('data', async (data) => {
         console.log(data);
         const valores = data.split(';');
-        // const sensorDigital = parseInt(valores[0]);
         const sensorProfundidade = parseFloat(valores[0]);
 
         // armazena os valores dos sensores nos arrays correspondentes
-        valoresSensorAnalogico.push(sensorProfundidade);
-        //valoresSensorDigital.push(sensorDigital);
+        valoresSensorHcsr04.push(sensorProfundidade);
 
         // insere os dados no banco de dados (se habilitado)
         if (HABILITAR_OPERACAO_INSERIR) {
 
-            // este insert irá inserir os dados na tabela "DadosArduino"
+            /* Inicio simulação de dados do sensor 01 */
+
+
+            // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros estável
             await poolBancoDados.execute(
-                'INSERT INTO Coleta_Dado (profundidade) VALUES (?)',
-                [sensorProfundidade]
+                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 1)',
+                [sensorProfundidade * 100]
             );
             console.log("valores inseridos no banco: ", sensorProfundidade);
+
+            // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros moderados
+            await poolBancoDados.execute(
+                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 1)',
+                [sensorProfundidade * 75]
+            );
+            console.log("valores inseridos no banco: ", sensorProfundidade);
+
+                    // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros de alerta
+            await poolBancoDados.execute(
+                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 1)',
+                [sensorProfundidade * 50]
+            );
+            console.log("valores inseridos no banco: ", sensorProfundidade);
+
+                    // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros critícos
+            await poolBancoDados.execute(
+                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 1)',
+                [sensorProfundidade * 25]
+            );
+            console.log("valores inseridos no banco: ", sensorProfundidade);
+
+
+            /* Fim simulação de dados do sensor 01 */
+
+            /* Inicio simulação de dados do sensor 02 */
+
+
+            // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros estável
+            await poolBancoDados.execute(
+                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 2)',
+                [sensorProfundidade * 100]
+            );
+            console.log("valores inseridos no banco: ", sensorProfundidade);
+
+            // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros moderados
+            await poolBancoDados.execute(
+                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 2)',
+                [sensorProfundidade * 75]
+            );
+            console.log("valores inseridos no banco: ", sensorProfundidade);
+
+                    // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros de alerta
+            await poolBancoDados.execute(
+                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 2)',
+                [sensorProfundidade * 50]
+            );
+            console.log("valores inseridos no banco: ", sensorProfundidade);
+
+                    // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros critícos
+            await poolBancoDados.execute(
+                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 2)',
+                [sensorProfundidade * 25]
+            );
+            console.log("valores inseridos no banco: ", sensorProfundidade);
+
+            
+            /* Fim simulação de dados do sensor 02 */
+
+            /* Inicio simulação de dados do sensor 03 */
+
+
+            // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros estável
+            await poolBancoDados.execute(
+                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 3)',
+                [sensorProfundidade * 100]
+            );
+            console.log("valores inseridos no banco: ", sensorProfundidade);
+
+            // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros moderados
+            await poolBancoDados.execute(
+                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 3)',
+                [sensorProfundidade * 75]
+            );
+            console.log("valores inseridos no banco: ", sensorProfundidade);
+
+                    // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros de alerta
+            await poolBancoDados.execute(
+                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 3)',
+                [sensorProfundidade * 50]
+            );
+            console.log("valores inseridos no banco: ", sensorProfundidade);
+
+                    // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros critícos
+            await poolBancoDados.execute(
+                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 3)',
+                [sensorProfundidade * 25]
+            );
+            console.log("valores inseridos no banco: ", sensorProfundidade);
+
+            
+            /* Fim simulação de dados do sensor 03 */
+
+            /* Inicio simulação de dados do sensor 04 */
+
+
+            // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros estável
+            await poolBancoDados.execute(
+                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 4)',
+                [sensorProfundidade * 100]
+            );
+            console.log("valores inseridos no banco: ", sensorProfundidade);
+
+            // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros moderados
+            await poolBancoDados.execute(
+                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 4)',
+                [sensorProfundidade * 75]
+            );
+            console.log("valores inseridos no banco: ", sensorProfundidade);
+
+                    // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros de alerta
+            await poolBancoDados.execute(
+                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 4)',
+                [sensorProfundidade * 50]
+            );
+            console.log("valores inseridos no banco: ", sensorProfundidade);
+
+                    // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros critícos
+            await poolBancoDados.execute(
+                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 4)',
+                [sensorProfundidade * 25]
+            );
+            console.log("valores inseridos no banco: ", sensorProfundidade);
+
+            
+            /* Fim simulação de dados do sensor 04 */
 
         }
 
@@ -80,8 +207,7 @@ const serial = async (
 
 // função para criar e configurar o servidor web
 const servidor = (
-    valoresSensorAnalogico,
-    valoresSensorDigital
+    valoresSensorHcsr04,
 ) => {
     const app = express();
 
@@ -99,28 +225,22 @@ const servidor = (
 
     // define os endpoints da API para cada tipo de sensor
     app.get('/sensores/analogico', (_, response) => {
-        return response.json(valoresSensorAnalogico);
-    });
-    app.get('/sensores/digital', (_, response) => {
-        return response.json(valoresSensorDigital);
+        return response.json(valoresSensorHcsr04);
     });
 }
 
 // função principal assíncrona para iniciar a comunicação serial e o servidor web
 (async () => {
     // arrays para armazenar os valores dos sensores
-    const valoresSensorAnalogico = [];
-    const valoresSensorDigital = [];
+    const valoresSensorHcsr04 = [];
 
     // inicia a comunicação serial
     await serial(
-        valoresSensorAnalogico,
-        valoresSensorDigital
+        valoresSensorHcsr04,
     );
 
     // inicia o servidor web
     servidor(
-        valoresSensorAnalogico,
-        valoresSensorDigital
+        valoresSensorHcsr04,
     );
 })();
