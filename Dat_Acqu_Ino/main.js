@@ -51,44 +51,44 @@ const serial = async (
     arduino.pipe(new serialport.ReadlineParser({ delimiter: '\r\n' })).on('data', async (data) => {
         console.log(data);
         const valores = data.split(';');
-        const sensorProfundidade = parseFloat(valores[0]);
+        const dadoDistancia = parseFloat(valores[0]);
 
         // armazena os valores dos sensores nos arrays correspondentes
-        valoresSensorHcsr04.push(sensorProfundidade);
+        valoresSensorHcsr04.push(dadoDistancia);
 
         // insere os dados no banco de dados (se habilitado)
         if (HABILITAR_OPERACAO_INSERIR) {
 
             /* Inicio simulação de dados do sensor 01 */
 
+            // estes insert iram simular a entrada de dados de uma lixeira estavel '
 
-            // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros estável
             await poolBancoDados.execute(
-                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 1)',
-                [sensorProfundidade * 100]
+                'INSERT INTO ColetaDados (distancia, fkSensor) VALUES (?, 1)',
+                [dadoDistancia * 96]
             );
-            console.log("valores inseridos no banco: ", sensorProfundidade);
+            console.log("valores inseridos no banco: ", dadoDistancia);
 
-            // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros moderados
-            await poolBancoDados.execute(
-                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 1)',
-                [sensorProfundidade * 75]
-            );
-            console.log("valores inseridos no banco: ", sensorProfundidade);
 
-                    // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros de alerta
             await poolBancoDados.execute(
-                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 1)',
-                [sensorProfundidade * 50]
+                'INSERT INTO ColetaDados (distancia, fkSensor) VALUES (?, 1)',
+                [dadoDistancia * 80]
             );
-            console.log("valores inseridos no banco: ", sensorProfundidade);
+            console.log("valores inseridos no banco: ", dadoDistancia);
 
-                    // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros critícos
+
             await poolBancoDados.execute(
-                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 1)',
-                [sensorProfundidade * 25]
+                'INSERT INTO ColetaDados (distancia, fkSensor) VALUES (?, 1)',
+                [dadoDistancia * 88]
             );
-            console.log("valores inseridos no banco: ", sensorProfundidade);
+            console.log("valores inseridos no banco: ", dadoDistancia);
+
+
+            await poolBancoDados.execute(
+                'INSERT INTO ColetaDados (distancia, fkSensor) VALUES (?, 1)',
+                [dadoDistancia * 77]
+            );
+            console.log("valores inseridos no banco: ", dadoDistancia);
 
 
             /* Fim simulação de dados do sensor 01 */
@@ -96,67 +96,68 @@ const serial = async (
             /* Inicio simulação de dados do sensor 02 */
 
 
-            // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros estável
-            await poolBancoDados.execute(
-                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 2)',
-                [sensorProfundidade * 100]
-            );
-            console.log("valores inseridos no banco: ", sensorProfundidade);
+            // estes insert iram simular a entrada de dados de uma lixeira em estado de moderado
 
-            // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros moderados
             await poolBancoDados.execute(
-                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 2)',
-                [sensorProfundidade * 75]
+                'INSERT INTO ColetaDados (distancia, fkSensor) VALUES (?, 2)',
+                [dadoDistancia * 60]
             );
-            console.log("valores inseridos no banco: ", sensorProfundidade);
+            console.log("valores inseridos no banco: ", dadoDistancia);
 
-                    // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros de alerta
-            await poolBancoDados.execute(
-                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 2)',
-                [sensorProfundidade * 50]
-            );
-            console.log("valores inseridos no banco: ", sensorProfundidade);
 
-                    // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros critícos
             await poolBancoDados.execute(
-                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 2)',
-                [sensorProfundidade * 25]
+                'INSERT INTO ColetaDados (distancia, fkSensor) VALUES (?, 2)',
+                [dadoDistancia * 73]
             );
-            console.log("valores inseridos no banco: ", sensorProfundidade);
+            console.log("valores inseridos no banco: ", dadoDistancia);
+
+
+            await poolBancoDados.execute(
+                'INSERT INTO ColetaDados (distancia, fkSensor) VALUES (?, 2)',
+                [dadoDistancia * 57]
+            );
+            console.log("valores inseridos no banco: ", dadoDistancia);
+
+            
+            await poolBancoDados.execute(
+                'INSERT INTO ColetaDados (distancia, fkSensor) VALUES (?, 2)',
+                [dadoDistancia * 68]
+            );
+            console.log("valores inseridos no banco: ", dadoDistancia);
 
             
             /* Fim simulação de dados do sensor 02 */
 
             /* Inicio simulação de dados do sensor 03 */
 
+            // estes insert iram simular a entrada de dados de uma lixeira em estado de alerta
 
-            // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros estável
             await poolBancoDados.execute(
-                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 3)',
-                [sensorProfundidade * 100]
+                'INSERT INTO ColetaDados (distancia, fkSensor) VALUES (?, 3)',
+                [dadoDistancia * 27]
             );
-            console.log("valores inseridos no banco: ", sensorProfundidade);
+            console.log("valores inseridos no banco: ", dadoDistancia);
 
-            // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros moderados
-            await poolBancoDados.execute(
-                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 3)',
-                [sensorProfundidade * 75]
-            );
-            console.log("valores inseridos no banco: ", sensorProfundidade);
 
-                    // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros de alerta
             await poolBancoDados.execute(
-                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 3)',
-                [sensorProfundidade * 50]
+                'INSERT INTO ColetaDados (distancia, fkSensor) VALUES (?, 3)',
+                [dadoDistancia * 45]
             );
-            console.log("valores inseridos no banco: ", sensorProfundidade);
+            console.log("valores inseridos no banco: ", dadoDistancia);
 
-                    // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros critícos
+
             await poolBancoDados.execute(
-                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 3)',
-                [sensorProfundidade * 25]
+                'INSERT INTO ColetaDados (distancia, fkSensor) VALUES (?, 3)',
+                [dadoDistancia * 36]
             );
-            console.log("valores inseridos no banco: ", sensorProfundidade);
+            console.log("valores inseridos no banco: ", dadoDistancia);
+
+
+            await poolBancoDados.execute(
+                'INSERT INTO ColetaDados (distancia, fkSensor) VALUES (?, 3)',
+                [dadoDistancia * 30]
+            );
+            console.log("valores inseridos no banco: ", dadoDistancia);
 
             
             /* Fim simulação de dados do sensor 03 */
@@ -164,33 +165,34 @@ const serial = async (
             /* Inicio simulação de dados do sensor 04 */
 
 
-            // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros estável
-            await poolBancoDados.execute(
-                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 4)',
-                [sensorProfundidade * 100]
-            );
-            console.log("valores inseridos no banco: ", sensorProfundidade);
+            // estes insert iram simular a entrada de dados de uma lixeira em estado critico
 
-            // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros moderados
             await poolBancoDados.execute(
-                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 4)',
-                [sensorProfundidade * 75]
+                'INSERT INTO ColetaDados (distancia, fkSensor) VALUES (?, 4)',
+                [dadoDistancia * 23]
             );
-            console.log("valores inseridos no banco: ", sensorProfundidade);
+            console.log("valores inseridos no banco: ", dadoDistancia);
 
-                    // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros de alerta
+    
             await poolBancoDados.execute(
-                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 4)',
-                [sensorProfundidade * 50]
+                'INSERT INTO ColetaDados (distancia, fkSensor) VALUES (?, 4)',
+                [dadoDistancia * 17]
             );
-            console.log("valores inseridos no banco: ", sensorProfundidade);
+            console.log("valores inseridos no banco: ", dadoDistancia);
 
-                    // este insert irá inserir os dados na tabela "coletaDados" nos paramêtros critícos
+
             await poolBancoDados.execute(
-                'INSERT INTO coletaDados (distancia, fkSensor) VALUES (?, 4)',
-                [sensorProfundidade * 25]
+                'INSERT INTO ColetaDados (distancia, fkSensor) VALUES (?, 4)',
+                [dadoDistancia * 15]
             );
-            console.log("valores inseridos no banco: ", sensorProfundidade);
+            console.log("valores inseridos no banco: ", dadoDistancia);
+
+
+            await poolBancoDados.execute(
+                'INSERT INTO ColetaDados (distancia, fkSensor) VALUES (?, 4)',
+                [dadoDistancia * 10]
+            );
+            console.log("valores inseridos no banco: ", dadoDistancia);
 
             
             /* Fim simulação de dados do sensor 04 */
